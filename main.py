@@ -52,7 +52,7 @@ def train_model(model, criterion, optimizer, num_epochs, save_period=-1):
 
             # data loop {{{
             if phase == "valid":
-                print("\033[38;5;240m")
+                print("\033[38;5;240m", end="")
             with tqdm(dataloaders[phase], desc=f"{phase} Epoch {epoch + 1}/{num_epochs}") as pbar:
                 for inputs, labels in pbar:
                     inputs = inputs.to(device)
@@ -81,7 +81,7 @@ def train_model(model, criterion, optimizer, num_epochs, save_period=-1):
                     epoch_loss = running_loss / dataset_sizes[phase]
                     epoch_acc = running_corrects.double() / dataset_sizes[phase]
                     pbar.set_postfix({"loss": epoch_loss, "acc": epoch_acc.item()})
-            print(colorama.Fore.RESET)
+            print(colorama.Fore.RESET, end="")
             # }}} finish of data loop
 
             # printing and collecting epoch statistics {{{
@@ -162,6 +162,7 @@ if __name__ == "__main__":
     model_ft = model_ft.to(device)
 
     criterion = nn.CrossEntropyLoss()
+    print(model_ft.fc.parameters())
     optimizer_ft = optim.Adam(model_ft.fc.parameters(), lr=0.001)
     # }}}
     

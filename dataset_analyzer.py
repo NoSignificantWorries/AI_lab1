@@ -44,4 +44,4 @@ if __name__ == "__main__":
     print(f"Total train images: {len(train)}")
     print(f"Total valid images: {len(valid)}")
     save_hist("dataset/analysis", train, valid)
-    # print(dset.get_mean_std())
+    print(dset.get_mean_std())
